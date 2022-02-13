@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Karla:wght@300;400;500;600;700&display=swap');
+
+:root{
+    --lightbg: #F5F7FB;
+    --text: #293264;
+    --button: #4D5B9E;
+    --selected: #D6DBF5;
+    --hr: #DBDEF0;
+    --correct: #94D7A2;
+    --incorrect: #F8BCBC;
+}
+
+* {
+    box-sizing: border-box;
+
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0; 
+    font-family: Inter, sans-serif; 
+    color: var(--text);
+    line-height: 1.5rem;
+}
+
+button{ 
+    outline: none;
+    box-shadow: 1px 1px 4px rgba(105, 114, 164,0.5);
+}
+
+hr {
+    border: 2px solid var(--hr);
+}
+
+p, h1{
+    max-width: 500px;
+    line-height: 1.5em;
+    margin: 0;
+}
+
+button:hover{
+    filter: brightness(1.1);
+}
+button:focus{
+    outline: 2px solid #293264; 
+}
+
+button:not([disabled]):active{
+    filter: brightness(1.2);
+    outline: none;
+    transform: translateY(1px);
+    box-shadow: 0px 0px 2px #6972a4;
+}
+button:disabled:active{
+    transform: unset;
+}
+
+#root{
+    display: flex;
+    flex-grow: 1;
+}
+
+main{
+    background-color: var(--lightbg);
+    padding: 4rem clamp(1rem, 6vw, 4rem);
+    counter-reset: question;
+    flex-grow: 1;
+}
+
+.welcome-pane {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.button--big{
+    background-color: var(--button);
+    border: none;
+    border-radius: 15px;
+    color: white;
+    height: 3.25rem;
+    min-width: 12rem;
+    margin-top: 2rem;
+}
+
+.question-container > h3::before{
+  counter-increment: question;                 
+  content: "#" counter(question) ": ";
+}
+
+.answer{
+    font-family: Inter;
+    font-weight: 600;
+    color: var(--text);
+    border-radius: 15px;
+    border: 2px solid var(--text);
+    min-width: 64px;
+    padding: 0.25rem 1rem;    
+}
+
+.answerwrapper{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem 0rem;
+}
+
+.answer--given{
+    border: 2px solid var(--selected);
+    background-color: var(--selected);
+}
+.answer--given:hover{
+    filter: brightness(1);
+}
+
+.answer--given.answer--correct,
+.answer--given.answer--incorrect,
+.answer--not-given{
+   
+} 
+
+.answer--given.answer--correct:hover,
+.answer--given.answer--incorrect:hover,
+.answer--not-given:hover{
+   filter: brightness(1);
+  
+} 
+
+.answer--given.answer--correct{
+    background-color: mediumaquamarine;
+}
+
+.answer--given.answer--incorrect{
+    background-color: mediumvioletred;
+}
+.answer--not-given.answer--correct{
+    border: 2px solid green;
+}
+
+.triviagame-settings label{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: 2rem;  
+    gap: 1rem;
+}
+
+.triviagame-settings label input{
+    width: 80%;
+    flex-grow: 2;
+}
+
+ .triviagame-settings label select{
+     width: 100%;
+     flex-grow: 2;
+      padding: 0.25rem 1rem;
+     
+ }
+.triviagame-settings label select, .triviagame-settings label span{ 
+    height: 2.5rem;
+    min-width: 5rem;
+    
+    line-height: 2;
+   
+    border: 1px solid var(--button);
+    border-radius: 0.5rem;
+}
+
+.triviagame-settings label span{
+    text-align: center;
+    width: 2rem;
+    flex-grow: 1; 
+    padding: 0.25rem 0; 
+}
+
+.category-select__label {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 15px;
+    width: 100%;
+} 
+
+.category-select__label select {
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+    padding: 10px 15px;
+    outline: 0;
+    border: 0px solid #000000;
+    border-radius: 0px;
+    background: var(--lightbg);
+    color: var(--text);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+.category-select__label select::-ms-expand {
+    display: none;
+}
+.category-select__label select:hover,
+.category-select__label select:focus {
+    background: var(--selected);
+}
+.category-select__label select:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+.category-select__arrow {
+    position: absolute;
+    bottom: 16px;
+    right: 15px;
+    width: 10px;
+    height: 10px;
+    border: solid var(--text);
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transition: 0.3s;
+}
+.category-select__label select:hover ~ .category-select__arrow,
+.category-select__label select:focus ~ .category-select__arrow {
+    border-top-color: var(--text);
+}
+.category-select__label select:disabled ~ .category-select__arrow {
+    border-top-color: var(--text);
+}
